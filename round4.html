@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round4</title>
+<style>
+body { font-family:Arial; background:#e0e0ff; display:flex; flex-direction:column;
+       align-items:center; justify-content:center; height:100vh; margin:0; }
+input, button { padding:8px; font-size:16px; margin-top:10px; }
+img { max-width:80%; margin-bottom:20px; }
+</style>
+</head>
+<body>
+<h2>第4ラウンド</h2>
+<img src="gazou1.png" alt="画像">
+<input type="text" id="answer4" placeholder="答え">
+<button id="send4">送信</button>
+
+<script>
+document.getElementById('send4').addEventListener('click', ()=>{
+    if(document.getElementById('answer4').value==='せいれき'){
+        window.location.href='round5.html';
+    } else alert('違う！');
+});
+</script>
+</body>
+</html>

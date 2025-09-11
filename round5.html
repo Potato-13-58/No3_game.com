@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round5</title>
+<style>
+body { font-family:Arial; background:#fff0e0; display:flex; flex-direction:column;
+       align-items:center; justify-content:center; height:100vh; margin:0; position:relative; }
+#hintBox, #answer5Box { display:none; margin-top:20px; }
+#showHint { position:absolute; top:20px; right:20px; opacity:0; }
+input, button { padding:8px; font-size:16px; margin-top:5px; }
+</style>
+</head>
+<body>
+<h2>最終ラウンド</h2>
+<p>答えは<br>12u121un2m2ji</p>
+<button id="showHint">透明ボタン</button>
+<div id="hintBox">
+<p>1=Jの右<br>2=Iの右</p>
+</div>
+<div id="answer5Box">
+<input type="text" id="answer5" placeholder="答え">
+<button id="send5">送信</button>
+</div>
+
+<script>
+document.getElementById('showHint').addEventListener('click', ()=>{
+    document.getElementById('hintBox').style.display='block';
+});
+document.addEventListener('keydown', e=>{
+    if(e.key==='Enter') document.getElementById('answer5Box').style.display='block';
+});
+document.getElementById('send5').addEventListener('click', ()=>{
+    if(document.getElementById('answer5').value==='おつかれー'){
+        alert('クリアURL: https://potato-13-58.github.io/No2_game.com/');
+    } else alert('違う！');
+});
+</script>
+</body>
+</html>

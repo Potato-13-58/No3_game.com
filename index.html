@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>謎解きサイト Round1</title>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f0f0f0, #c0c0ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+h1 { text-align: center; }
+input { padding:8px; margin:5px; font-size:16px; }
+button { padding:10px 20px; font-size:16px; cursor:pointer; position:absolute; }
+#advert { position: fixed; top:50px; left:50%; transform:translateX(-50%);
+          background: yellow; padding:10px 20px; border:2px solid black; cursor:pointer; display:none; }
+#adClose { position:absolute; top:0; right:0; width:1px; height:1px; background:red; cursor:pointer; }
+</style>
+</head>
+<body>
+<h1>アンケート</h1>
+<form id="surveyForm">
+  <input type="text" placeholder="名前" required><br>
+  <input type="text" placeholder="好きな色" required><br>
+  <input type="text" placeholder="好きな食べ物" required><br>
+  <input type="text" placeholder="行きたい国" required><br>
+  <input type="text" placeholder="欲しいもの" required><br>
+</form>
+<button id="submitBtn">送信</button>
+
+<div id="advert">
+  楽しく人間観察！今すぐダウンロード！！
+  <div id="adClose"></div>
+</div>
+
+<script>
+const submitBtn = document.getElementById('submitBtn');
+let keyUnlocked = false;
+
+submitBtn.style.top = '50%';
+submitBtn.style.left = '50%';
+submitBtn.style.transform = 'translate(-50%,-50%)';
+
+document.addEventListener('mousemove', e=>{
+    if(keyUnlocked) return;
+    const btnRect = submitBtn.getBoundingClientRect();
+    const distX = e.clientX - (btnRect.left + btnRect.width/2);
+    const distY = e.clientY - (btnRect.top + btnRect.height/2);
+    const dist = Math.sqrt(distX**2 + distY**2);
+    if(dist < 100) {
+        let newX = btnRect.left - distX/2;
+        let newY = btnRect.top - distY/2;
+        if(newX < 0) newX=0;
+        if(newY < 0) newY=0;
+        if(newX>window.innerWidth-btnRect.width) newX=window.innerWidth-btnRect.width;
+        if(newY>window.innerHeight-btnRect.height) newY=window.innerHeight-btnRect.height;
+        submitBtn.style.left = newX + 'px';
+        submitBtn.style.top = newY + 'px';
+        submitBtn.style.transform = 'translate(0,0)';
+    }
+});
+
+/* 偽広告 */
+const advert = document.getElementById('advert');
+setInterval(()=>{ advert.style.display='block'; },15000);
+
+document.getElementById('adClose').addEventListener('click', ()=>{ advert.style.display='none'; });
+
+advert.addEventListener('click', ()=>{
+    if(keyUnlocked){
+        window.location.href = 'round2.html';
+    } else {
+        alert('お疲れー');
+    }
+});
+
+/* ゴリ押し送信で鍵解除 */
+submitBtn.addEventListener('click', ()=>{
+    keyUnlocked=true;
+    alert('何かの鍵が開いた、、');
+    submitBtn.style.cursor='pointer';
+});
+</script>
+</body>
+</html>

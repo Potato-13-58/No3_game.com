@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round3</title>
+<style>
+body { font-family:Arial; background:#ffe0e0; display:flex; flex-direction:column;
+       align-items:center; justify-content:center; height:100vh; margin:0; }
+#binText { margin-top:20px; }
+#answer3Box { display:none; margin-top:20px; }
+input, button { padding:8px; font-size:16px; margin-top:5px; }
+</style>
+</head>
+<body>
+<h2>第3ラウンド</h2>
+<p>1+10-5</p>
+<div id="binText"></div>
+<div id="answer3Box">
+  <input type="text" id="answer3" placeholder="答え">
+  <button id="send3">送信</button>
+</div>
+
+<script>
+document.addEventListener('keydown', e=>{
+    if(e.key==='6') document.getElementById('binText').textContent='0001+1011+0011+0101';
+    if(e.key==='a' || e.key==='A') document.getElementById('answer3Box').style.display='block';
+});
+document.getElementById('send3').addEventListener('click', ()=>{
+    if(document.getElementById('answer3').value==='20'){
+        window.location.href='round4.html';
+    } else alert('違う！');
+});
+</script>
+</body>
+</html>
